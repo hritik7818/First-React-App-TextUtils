@@ -126,11 +126,11 @@ export default function TextForm(props) {
             name="text"
             id="text"
             rows="9"
-            cols="87"
+            cols="100"
             placeholder="Enter text here"
             value={text}
             onChange={onChangeText}
-            className="border-2 border-black rounded-lg flex outline-none my-5 ml-28 p-4 pr-28 font-mono" style={style3} spellCheck="false"
+            className="border-2 border-black rounded-lg flex outline-none my-5 ml-28 p-4 font-mono" style={style3} spellCheck="false"
           ></textarea>
           <div className="">
             <div className="mx-12 my-8 bg-fuchsia-600 text-white p-4 rounded-lg">
@@ -147,7 +147,7 @@ export default function TextForm(props) {
             </div>
           </div>
         </div>
-        <div className="flex space-x-5 ml-32">
+        <div className="flex space-x-5 ml-28 ">
           <button
             onClick={changeToUpperCase}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
@@ -168,7 +168,7 @@ export default function TextForm(props) {
           </button>
           <button
             onClick={copyText}
-            className={`absolute left-[72.5%] ${props.alertMessage ? "top-[220px]" : "top-40"} bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium`}
+            className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Copy
           </button>
