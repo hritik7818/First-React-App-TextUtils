@@ -20,7 +20,7 @@ export default function TextForm(props) {
     props.showAlert("Success", "Text Cleared !");
   };
   let capitalize = () => {
-    let words = text.trim().toLowerCase().split(" ");
+    let words = text.trim().toLowerCase().split(" ").filter(element => element.length > 0);
     let capitalizeText = [];
     words.forEach((element) => {
       capitalizeText.push(
@@ -34,6 +34,7 @@ export default function TextForm(props) {
     let copyText = document.getElementById("text");
     copyText.select();
     navigator.clipboard.writeText(copyText.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Success", "Text is Copied to Clipboard");
   }
   let removeExtraSpaces = () => {
@@ -136,9 +137,7 @@ export default function TextForm(props) {
             <div className="mx-12 my-8 bg-fuchsia-600 text-white p-4 rounded-lg">
               <h1 className="font-medium">Words</h1>
               <h1 className="text-3xl">
-                {text == "" || text.charAt(text.length - 1) == " "
-                  ? text.split(" ").length - 1
-                  : text.split(" ").length}
+                {text.split(" ").filter(element => element.length > 0).length}
               </h1>
             </div>
             <div className="mx-12 bg-fuchsia-600 text-white p-4 rounded-lg">
@@ -147,39 +146,39 @@ export default function TextForm(props) {
             </div>
           </div>
         </div>
-        <div className="flex space-x-5 ml-28 ">
+        <div className="flex space-x-5 ml-28">
           <button
-            onClick={changeToUpperCase}
+            onClick={changeToUpperCase} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Change to Upper case
           </button>
           <button
-            onClick={changeToLowerCase}
+            onClick={changeToLowerCase} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Change to lower case
           </button>
           <button
-            onClick={capitalize}
+            onClick={capitalize} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Capitalize
           </button>
           <button
-            onClick={copyText}
+            onClick={copyText} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Copy
           </button>
           <button
-            onClick={removeExtraSpaces}
+            onClick={removeExtraSpaces} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Remove Extra Spaces
           </button>
           <button
-            onClick={clearText}
+            onClick={clearText} disabled={text.length === 0}
             className="bg-violet-500 text-white p-4 rounded-lg border-2 border-black font-medium"
           >
             Clear

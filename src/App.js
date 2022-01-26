@@ -61,7 +61,7 @@ function App() {
   return (
     <>
       <NavBar mode={mode} toggleModes={toggleModes} />
-      <Alert alertMessage={alertMessage} />
+      <Alert alertMessage={alertMessage} mode={mode} />
       <TextForm mode={mode} alertMessage={alertMessage} showAlert={showAlert} />
     </>
   );
