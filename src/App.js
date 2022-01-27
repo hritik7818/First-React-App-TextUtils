@@ -19,6 +19,7 @@ function App() {
   }
 
   let toggleMode = (passedMode) => {
+    console.log(passedMode);
     if (mode !== passedMode) {
       setMode(passedMode);
       showAlert("Success", `${capitalize(passedMode)} Mode Enable !`)

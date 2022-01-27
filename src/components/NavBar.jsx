@@ -58,7 +58,7 @@ export default function NavBar(props) {
             }}></button>
             <button className={`w-7 h-7 bg-green-600 rounded-full border-2 ${props.mode === "green" ? "border-purple-900" : "border-white"}`} onClick={() => { props.toggleMode("green") }}></button>
             <button className={`w-7 h-7 bg-blue-600 rounded-full border-2 ${props.mode === "blue" ? "border-purple-900" : "border-white"}`} onClick={() => { props.toggleMode("blue") }}></button>
-            <button className={`w-7 h-7 bg-black rounded-full ${props.mode === "dark" ? "border-purple-900" : "border-white"} border-2`} onClick={() => { props.toggleMode("black") }}></button>
+            <button className={`w-7 h-7 bg-black rounded-full ${props.mode === "dark" ? "border-purple-900" : "border-white"} border-2`} onClick={() => { props.toggleMode("dark") }}></button>
           </div>
         </div>
       </nav>
