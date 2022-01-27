@@ -2,6 +2,10 @@ import NavBar from "./components/NavBar";
 import TextForm from "./components/TextForm";
 import React, { useState } from 'react';
 import Alert from "./components/Alert";
+import About from "./components/About";
+import {
+  BrowserRouter as Router, Route, Routes, Switch
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -9,48 +13,21 @@ function App() {
   //   console.log(mode);
   // }
   const [alertMessage, setAlertMessage] = useState(null);
-  let toggleModes = {
-    toggleMode1: () => {
-      if (mode !== "red") {
-        setMode("red");
-        showAlert("Success", "Red Theme is Enable !")
-      }
-      else {
-        setMode("light");
-        showAlert("Success", "Red Theme is Disable !")
-      }
-    },
-    toggleMode2: () => {
-      if (mode !== "green") {
-        setMode("green");
-        showAlert("Success", "Green Theme is Enable !")
-      }
-      else {
-        setMode("light");
-        showAlert("Success", "Green Theme is Disable !")
-      }
-    },
-    toggleMode3: () => {
-      if (mode !== "blue") {
-        setMode("blue");
-        showAlert("Success", "Blue Theme is Enable !")
-      }
-      else {
-        setMode("light");
-        showAlert("Success", "Blue Theme is Disable !")
-      }
-    },
-    toggleMode4: () => {
-      if (mode !== "dark") {
-        setMode("dark");
-        showAlert("Success", "Dark Mode Enable !")
-      }
-      else {
-        setMode("light");
-        showAlert("Success", "Dark Mode Disable !")
-      }
+
+  let capitalize = (word) => {
+    return word.charAt(0).toUpperCase().concat(word.slice(1, word.length));
+  }
+
+  let toggleMode = (passedMode) => {
+    if (mode !== passedMode) {
+      setMode(passedMode);
+      showAlert("Success", `${capitalize(passedMode)} Mode Enable !`)
     }
-  };
+    else {
+      setMode("light");
+      showAlert("Success", `${capitalize(passedMode)} Mode Disable !`)
+    }
+  }
   let showAlert = (msgType, msg) => {
     setAlertMessage({
       msgType: msgType,
@@ -60,9 +37,18 @@ function App() {
   }
   return (
     <>
-      <NavBar mode={mode} toggleModes={toggleModes} />
-      <Alert alertMessage={alertMessage} mode={mode} />
-      <TextForm mode={mode} alertMessage={alertMessage} showAlert={showAlert} />
+      <Router>
+        <NavBar mode={mode} toggleMode={toggleMode} />
+        <Alert alertMessage={alertMessage} mode={mode} />
+        <Switch>
+          <Route path="/about">
+            <About mode={mode} />
+          </Route>
+          <Route path="/">
+            <TextForm mode={mode} alertMessage={alertMessage} showAlert={showAlert} />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

@@ -31,14 +31,15 @@ export default function TextForm(props) {
     props.showAlert("Success", "Text is Capitalized !");
   };
   let copyText = () => {
-    let copyText = document.getElementById("text");
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);
     props.showAlert("Success", "Text is Copied to Clipboard");
   }
   let removeExtraSpaces = () => {
-    let newArray = text.split(/[ ]+/);
+    if (!text.includes("  ")) {
+      props.showAlert("Success", "No Extra spaces Found !");
+      return;
+    }
+    let newArray = text.trim().split(/[ ]+/);
     setText(newArray.join(" ").trim());
     props.showAlert("Success", "Extra spaces is removed from the text");
   }
@@ -137,7 +138,7 @@ export default function TextForm(props) {
             <div className="mx-12 my-8 bg-fuchsia-600 text-white p-4 rounded-lg">
               <h1 className="font-medium">Words</h1>
               <h1 className="text-3xl">
-                {text.split(" ").filter(element => element.length > 0).length}
+                {text.split(/\s+/).filter(element => element.length > 0).length}
               </h1>
             </div>
             <div className="mx-12 bg-fuchsia-600 text-white p-4 rounded-lg">
